@@ -1,10 +1,12 @@
 import React from "react";
-import Counter from "./components/counter";
+import AddTodo from "./components/AddTodo";
+import ListTodos from "./components/ListTodos";
 
 export default function App() {
   return (
     <div>
-      <Counter />
+      <AddTodo />
+      <ListTodos />
     </div>
   );
 }
