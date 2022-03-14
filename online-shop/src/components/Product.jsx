@@ -6,12 +6,15 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import { TextField } from "@mui/material";
 import { useState } from "react";
+import { useContext } from "react";
+import { GeneralContext } from "../context/Context";
 
 import { Grid } from "@mui/material";
 
 export default function ActionAreaCard({ data, allProducts, passCart }) {
   const { image, title, description, price } = data;
   const [quantity, setQuantity] = useState(0);
+  const { setToCart } = useContext(GeneralContext);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
