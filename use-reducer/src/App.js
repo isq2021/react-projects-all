@@ -1,11 +1,12 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Light from "./components/Light";
+import Form from "./components/Form";
+
+import Tracker from "./components/Tracker";
 
 function App() {
   return (
     <div className="App">
-      <Light />
+      <Tracker />
     </div>
   );
 }
