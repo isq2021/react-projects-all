@@ -31,7 +31,7 @@ export default function App() {
             <Products
               data={allProducts}
               allProducts={allProducts}
-              passCart={passCart}
+              passCart={setCart}
             />
           </Grid>
         </Grid>

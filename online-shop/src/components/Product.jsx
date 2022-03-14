@@ -9,14 +9,10 @@ import { useState } from "react";
 
 import { Grid } from "@mui/material";
 
-export default function ActionAreaCard({ data, allProducts }) {
+export default function ActionAreaCard({ data, allProducts, passCart }) {
   const { image, title, description, price } = data;
   const [quantity, setQuantity] = useState(0);
-  const [cartProducts, setCart] = useState(0);
 
-  const handleCart = () => {
-    setCart(allProducts);
-  };
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -51,10 +47,15 @@ export default function ActionAreaCard({ data, allProducts }) {
         </Grid>
       </Grid>
       <Button
+        onClick={() =>
+          passCart((prev) => [
+            ...prev,
+            { title: title, price: price * quantity, quantity: quantity },
+          ])
+        }
         size="large"
         color="primary"
-        fullWidth
-        onClick={() => handleCart()}>
+        fullWidth>
         Add to cart
       </Button>
     </Card>
