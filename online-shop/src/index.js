@@ -5,16 +5,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GeneralProvider } from "./context/Context";
 
-ReactDOM.render( <
-    React.StrictMode >
-    <
-    GeneralProvider >
-    <
-    App / >
-    <
-    /GeneralProvider> <
-    /React.StrictMode>,
-    document.getElementById("root")
+ReactDOM.render(
+  <React.StrictMode>
+    <GeneralProvider>
+      <App />
+    </GeneralProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
