@@ -8,8 +8,11 @@ import {
   TextField,
 } from "@mui/material";
 import React from "react";
+import { GeneralContext } from "../Context/GeneralContext";
+import { useContext } from "react";
 
 function Form() {
+  const { formData, setFormData, dispatch } = useContext(GeneralContext);
   return (
     <>
       <div className="form-container">
@@ -17,7 +20,11 @@ function Form() {
           <Grid item xs={6}>
             <FormControl>
               <InputLabel>Type</InputLabel>
-              <Select value="Income">
+              <Select
+                value={formData.type}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, type: e.target.value }))
+                }>
                 <MenuItem value="Income">Income</MenuItem>
                 <MenuItem value="Expense">Expense</MenuItem>
               </Select>
@@ -25,12 +32,22 @@ function Form() {
           </Grid>
           <Grid item xs={6}>
             <FormControl>
-              <InputLabel>Amount</InputLabel>
-              <TextField type="number" />
+              <TextField
+                type="number"
+                value={formData.value}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, value: e.target.value }))
+                }
+              />
             </FormControl>
           </Grid>
           <Grid item xs={12} />
-          <Button>Add expense</Button>
+          <Button
+            onClick={() =>
+              dispatch({ type: "addTransaction", payload: formData })
+            }>
+            Add expense
+          </Button>
         </Grid>
       </div>
     </>

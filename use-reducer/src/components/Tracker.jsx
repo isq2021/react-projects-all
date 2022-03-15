@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Card, CardContent, CardHeader, Divider } from "@mui/material";
 import Form from "./Form";
+import List from "./List";
 
 function Tracker() {
   return (
@@ -13,6 +14,9 @@ function Tracker() {
             <Form />
           </CardContent>
         </Card>
+        <Box>
+          <List />
+        </Box>
       </Box>
     </>
   );
