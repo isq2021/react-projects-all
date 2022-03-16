@@ -1,5 +1,7 @@
 import {
   Button,
+  Card,
+  Divider,
   FormControl,
   Grid,
   InputLabel,
@@ -10,6 +12,7 @@ import {
 import React from "react";
 import { GeneralContext } from "../Context/GeneralContext";
 import { useContext } from "react";
+import List from "./List";
 
 function Form() {
   const { formData, setFormData, dispatch } = useContext(GeneralContext);
@@ -19,14 +22,13 @@ function Form() {
         <Grid container spacing={2} mt={2}>
           <Grid item xs={6}>
             <FormControl>
-              <InputLabel>Type</InputLabel>
               <Select
                 value={formData.type}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, type: e.target.value }))
                 }>
-                <MenuItem value="Income">Income</MenuItem>
-                <MenuItem value="Expense">Expense</MenuItem>
+                <MenuItem value="INCOME">Income</MenuItem>
+                <MenuItem value="EXPENSE">Expense</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -49,6 +51,10 @@ function Form() {
             Add expense
           </Button>
         </Grid>
+
+        <Card>
+          <List />
+        </Card>
       </div>
     </>
   );

@@ -10,7 +10,9 @@ const reduce = (state, action) => {
       return [...state, { ...action.payload, id: uuidv4() }];
 
     case "deleteTransaction":
-      return state;
+      return state.filter((x) => {
+        return x.id !== action.payload;
+      });
     default:
       return state;
   }
