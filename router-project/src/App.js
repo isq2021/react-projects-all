@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import { useState } from "react";
 import { Button } from "@mui/material";
+import Login from "./pages/Login";
 
 function App() {
   const [isLog, setIsLog] = useState(true);
@@ -18,7 +19,7 @@ function App() {
         </Button>
       </div>
       <Switch>
-        <Route path="/" component={Home} exact />
+        <Route path="/" component={Login} exact />
         <Route path="/About/:id" component={About} />
         <Route path="/Profile">
           <Profile isLog={isLog} />
