@@ -1,5 +1,7 @@
+import { Carousel } from "bootstrap";
 import React, { Component } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Row } from "reactstrap";
+import CarouselPage from "./CarouselPage";
 
 class ModalPage extends Component {
   constructor() {
@@ -32,15 +34,8 @@ class ModalPage extends Component {
 
         <ModalFooter>
           <h3>Known for</h3>
-          <Row>
-            {known_for.map((movie) => {
-              return (
-                <img
-                  src={"https://image.tmdb.org/t/p/w185/" + movie.backdrop_path}
-                  alt="bla "
-                />
-              );
-            })}
+          <Row style={{ width: "100%" }}>
+            <CarouselPage singleActor={this.props.dataActor[0]} />
           </Row>
         </ModalFooter>
       </Modal>
@@ -48,3 +43,15 @@ class ModalPage extends Component {
   }
 }
 export default ModalPage;
+
+/* 
+
+ {known_for.map((movie) => {
+              return (
+                <img
+                  src={"https://image.tmdb.org/t/p/w185/" + movie.backdrop_path}
+                  alt="bla "
+                />
+              );
+            })}
+*/
