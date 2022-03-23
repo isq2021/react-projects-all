@@ -11,6 +11,7 @@ import React, { useContext } from "react";
 import { GeneralContext } from "../Context/GeneralContext";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
+import Hamburger from "./Hamburger";
 
 function ShowRecipiesOnUI() {
   const { allData } = useContext(GeneralContext);
@@ -20,6 +21,7 @@ function ShowRecipiesOnUI() {
   };
   return (
     <>
+      <Hamburger />
       <Grid container spacing={2} style={styleHeader}>
         {allData.map((recipe) => (
           <Grid item xs={6} md={3} key={uuidv4()}>
