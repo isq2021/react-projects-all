@@ -6,6 +6,7 @@ export const callToApi = createAsyncThunk(
     try {
       const req = await fetch("https://api.chucknorris.io/jokes/random");
       const response = await req.json();
+      console.log(response);
       return response;
     } catch (error) {
       console.log(error);
