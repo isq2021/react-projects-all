@@ -6,6 +6,9 @@ export const GeneralContext = createContext([]);
 export const GeneralProvider = ({ children }) => {
   const [allData, setAllData] = useState([]);
   const [searchRecipeValue, setsearchRecipeValue] = useState("chicken");
+  const [numberOfPages, setNumberOfPages] = useState(0);
+  const [numberOfPagesNow, setNumberOfPagesNow] = useState(0);
+  const elementsPerPage = 2;
 
   const CallToApi = async () => {
     try {
@@ -22,11 +25,18 @@ export const GeneralProvider = ({ children }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchRecipeValue]);
+  useEffect(() => {
+    setNumberOfPages(Math.ceil(allData.length / elementsPerPage));
+  }, [allData]);
 
   const data = {
     allData: allData,
     searchRecipeValue: searchRecipeValue,
     setsearchRecipeValue: setsearchRecipeValue,
+    numberOfPages: numberOfPages,
+    numberOfPagesNow: numberOfPagesNow,
+    setNumberOfPagesNow: setNumberOfPagesNow,
+    elementsPerPage: elementsPerPage,
   };
   return (
     <GeneralContext.Provider value={data}>{children}</GeneralContext.Provider>

@@ -12,9 +12,14 @@ import { GeneralContext } from "../Context/GeneralContext";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
 import Hamburger from "./Hamburger";
+import Pagination from "./Pagination";
 
 function ShowRecipiesOnUI() {
-  const { allData } = useContext(GeneralContext);
+  const { allData, numberOfPagesNow, elementsPerPage } =
+    useContext(GeneralContext);
+  const start = numberOfPagesNow * elementsPerPage;
+  const end = start + elementsPerPage;
+  const recipesToShow = allData.slice(start, end);
 
   const styleHeader = {
     height: 50,
@@ -22,8 +27,9 @@ function ShowRecipiesOnUI() {
   return (
     <>
       <Hamburger />
+
       <Grid container spacing={2} style={styleHeader}>
-        {allData.map((recipe) => (
+        {recipesToShow.map((recipe) => (
           <Grid item xs={6} md={3} key={uuidv4()}>
             <Card>
               <CardHeader title={recipe.recipe.label} />
@@ -40,6 +46,9 @@ function ShowRecipiesOnUI() {
             </Button>
           </Grid>
         ))}
+      </Grid>
+      <Grid item xs={12}>
+        <Pagination />
       </Grid>
     </>
   );
