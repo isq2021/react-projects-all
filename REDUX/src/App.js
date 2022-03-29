@@ -1,12 +1,13 @@
-import { useState } from "react";
 import "./App.css";
-import Tictactoe from "./components/Tictactoe";
+import Counter from "./components/Counter";
+import Todos from "./components/Todos";
 
 export default function App() {
   return (
     <>
       <div className="main-container">
-        <Tictactoe />
+        <Counter />
+        <Todos />
       </div>
     </>
   );
