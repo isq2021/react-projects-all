@@ -9,6 +9,8 @@ function Todos() {
 
   const todos = useSelector((state) => state.todosReducer);
   const [x] = useSelector((state) => state.todosReducer);
+  console.log(x);
+  console.log(todos, "todos");
 
   const dispatch = useDispatch();
   const handleOnChange = (v) => {
@@ -24,7 +26,7 @@ function Todos() {
   const handleDelete = (id) => {
     dispatch({
       type: actions.DELETETODO,
-      payload: x,
+      payload: id,
     });
   };
 
@@ -33,11 +35,11 @@ function Todos() {
       <div className="container">
         <input value={value} onChange={(e) => handleOnChange(e.target.value)} />
         <button onClick={handleNewTask}>Add todo</button>
-        {todos.map((x) => {
+        {todos.map((el) => {
           return (
             <li key={uuidv4()}>
-              {x.todo}
-              <button onClick={() => handleDelete()}>Delete</button>
+              {el.todo}
+              <button onClick={() => handleDelete(el.id)}>Delete</button>
             </li>
           );
         })}

@@ -12,9 +12,9 @@ const todosReducer = (state = [], action) => {
 
       return [...state, newTask];
     case actions.DELETETODO:
-      console.log(action.payload, "action on delete");
+      console.log(action, "action on delete");
 
-      return state.filter((element) => element.id !== action.payload.id);
+      return state.filter((element) => element.id !== action.payload);
 
     default:
       return state;
