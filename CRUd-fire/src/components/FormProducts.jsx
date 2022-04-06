@@ -5,9 +5,11 @@ import { FirestoreContext } from "../context/GeneralFireStore";
 function FormProducts() {
   const [newProduct, setNewProduct] = useState({
     name: "",
-    image: "",
+
     price: "",
   });
+
+  const [newImage, setNewImage] = useState("");
   const { addProduct } = useContext(FirestoreContext);
   return (
     <>
@@ -27,13 +29,13 @@ function FormProducts() {
           placeholder="product price"
         />
         <input
-          type="text"
+          type="file"
           placeholder="product image"
-          onChange={(e) =>
-            setNewProduct({ ...newProduct, image: e.target.value })
-          }
+          onChange={(e) => setNewImage(e.target.files[0])}
         />
-        <button onClick={() => addProduct(newProduct)}>Add product</button>
+        <button onClick={() => addProduct(newProduct, newImage)}>
+          Add product
+        </button>
       </div>
     </>
   );

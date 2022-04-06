@@ -1,24 +1,28 @@
 import React, { useContext, useState } from "react";
 import "./App.css";
 import FormProducts from "./components/FormProducts";
+import AllProductsList from "./components/Products/AllProductsList";
 import { GeneralAuthContext } from "./context/AuthContext.jsx";
 
 const App = () => {
   const [newUser, setNewUser] = useState({ email: "", password: "" });
-  const [logUser, setLogUser] = useState({ email: "", password: "" });
+  // const [logUser, setLogUser] = useState({ email: "", password: "" });
   const { signUp, userInfo, logOut, loginUser } =
     useContext(GeneralAuthContext);
   return (
     <>
       {userInfo ? (
-        <div className="todo">
-          <h1>Welcome to your homepage! </h1>
-          <h2>
-            you are logged in as {userInfo ? userInfo.email : "logged out!"}
-          </h2>
-          <button onClick={() => logOut()}>log out </button>
-          <FormProducts />
-        </div>
+        <>
+          <div className="todo">
+            <h1>Welcome to your homepage! </h1>
+            <h2>
+              you are logged in as {userInfo ? userInfo.email : "logged out!"}
+            </h2>
+            <button onClick={() => logOut()}>log out </button>
+            <FormProducts />
+          </div>
+          <AllProductsList />
+        </>
       ) : (
         <div className="todo">
           <div className="todo_container">
