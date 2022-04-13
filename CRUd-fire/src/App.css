@@ -89,44 +89,22 @@ input {
     font-weight: 500;
 }
 
-.button-complete,
-.button-delete,
-.button-edit {
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: transparent;
-    border-radius: 50%;
+.HeroBackground {
+    display: flex;
+    height: 80vh;
+    background-image: url("https://media.istockphoto.com/photos/online-shopping-and-payment-man-using-tablet-with-shopping-cart-icon-picture-id1206800961?k=20&m=1206800961&s=612x612&w=0&h=hcPoUKhWtzHXR3PIAHVgPVZDZaO7R8yZ1wNPkUSsgwU=");
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    color: rgb(132, 220, 24);
 }
 
-#i {
-    font-size: 35px;
+.allproducts {
+    display: grid;
+    grid-template-columns: repeat(1fr, 5);
+    grid-template-rows: 1fr;
 }
 
-.button-complete {
-    color: #95faa3;
-    margin-right: 10px;
-}
-
-.button-edit {
-    color: #56cfff;
-    margin-right: 10px;
-}
-
-.button-delete {
-    color: rgb(255, 122, 98);
-}
-
-@media screen and (max-width: 667px) {
-    .task_container {
-        width: 90%;
-    }
-    .task {
-        margin-right: 0px;
-    }
-}
-
-input:focus,
-button:focus {
-    outline: none;
+.singleproduct {
+    width: 200px;
 }

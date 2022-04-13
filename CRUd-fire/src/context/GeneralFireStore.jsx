@@ -1,7 +1,20 @@
 import { createContext, useEffect, useState } from "react";
 import { fireStore, storage } from "../firebase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  onSnapshot,
+  doc,
+  deleteDoc,
+  updateDoc,
+} from "firebase/firestore";
+import {
+  getDownloadURL,
+  ref,
+  uploadBytesResumable,
+  deleteObject,
+} from "firebase/storage";
 
 export const FirestoreContext = createContext();
 
@@ -42,10 +55,37 @@ export const FireStoreProvider = ({ children }) => {
   useEffect(() => {
     getAllProducts();
   }, []);
+
+  //observer that checks if there is new data in my database in firestore(not done)
+
+  const deleteProduct = async (id, imgtoDelete) => {
+    await deleteDoc(doc(fireStore, "products", id));
+    deleteImg(imgtoDelete);
+  };
+  const deleteImg = (imageName) => {
+    const refImg = ref(storage, `images/${imageName}`);
+    deleteObject(refImg)
+      .then(() => {
+        console.log("img deleted");
+      })
+      .catch((error) => console.log(error.message));
+  };
+
+  //modify firebase data
+  const modifyProduct = async (newData) => {
+    const docRefFB = doc(fireStore, "products".newData.id);
+    const dataClean = { ...newData };
+    delete dataClean.id;
+
+    updateDoc(docRefFB, { ...dataClean });
+  };
+
   const data = {
     addProduct: addProduct,
     getAllProducts: getAllProducts,
     allProducts: allProducts,
+    deleteProduct: deleteProduct,
+    modifyProduct: modifyProduct,
   };
   return (
     <FirestoreContext.Provider value={data}>

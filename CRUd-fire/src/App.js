@@ -3,6 +3,16 @@ import "./App.css";
 import FormProducts from "./components/FormProducts";
 import AllProductsList from "./components/Products/AllProductsList";
 import { GeneralAuthContext } from "./context/AuthContext.jsx";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import CardProductList from "./pages/CardProductList";
+import OrderPage from "./pages/OrderPage";
+
+import LoginAdmin from "./pages/LoginAdmin";
+import OrdersView from "./pages/OrdersView";
+import AddProduct from "./pages/AddProduct";
+import SeeProducts from "./pages/SeeProducts";
 
 const App = () => {
   const [newUser, setNewUser] = useState({ email: "", password: "" });
@@ -14,14 +24,20 @@ const App = () => {
       {userInfo ? (
         <>
           <div className="todo">
-            <h1>Welcome to your homepage! </h1>
-            <h2>
-              you are logged in as {userInfo ? userInfo.email : "logged out!"}
-            </h2>
             <button onClick={() => logOut()}>log out </button>
-            <FormProducts />
           </div>
-          <AllProductsList />
+          <Routes>
+            <Route path="/" element={<Home />} />
+
+            <Route path="/productlist" element={<CardProductList />} />
+            <Route path="/order-page" element={<OrderPage />} />
+            <Route path="/loginAdmin" element={<LoginAdmin />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="orders" element={<OrdersView />} />
+              <Route path="add-product" element={<AddProduct />} />
+              <Route path="see-products" element={<SeeProducts />} />
+            </Route>
+          </Routes>
         </>
       ) : (
         <div className="todo">
