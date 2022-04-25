@@ -19,9 +19,12 @@ import {
 export const FirestoreContext = createContext();
 
 const refCollection = collection(fireStore, "products");
+const refCollectionOrders = collection(fireStore, "orders");
 
 export const FireStoreProvider = ({ children }) => {
   const [allProducts, setAllProducts] = useState([]);
+  const [allOrder, setAllOrder] = useState([]);
+  //new product
   const addProduct = async (newProduct, image) => {
     const refHosting = ref(storage, `images/${image.name}`);
     const uploadImage = uploadBytesResumable(refHosting, image);
@@ -39,6 +42,21 @@ export const FireStoreProvider = ({ children }) => {
         getDownloadURL(uploadImage.snapshot.ref).then((url) =>
           addDoc(refCollection, { ...newProduct, image: url })
         )
+    );
+  };
+  //new order
+  const saveOrder = async (ourcard, userData) => {
+    addDoc(refCollectionOrders, { ...ourcard, ...userData });
+  };
+  //get orders for admin
+
+  const getAllOrders = async () => {
+    const ordersFromFireStore = await getDocs(refCollectionOrders);
+    setAllOrder(
+      ordersFromFireStore.docs.map((order) => ({
+        data: order.data(),
+        id: order.id,
+      }))
     );
   };
 
@@ -86,6 +104,9 @@ export const FireStoreProvider = ({ children }) => {
     allProducts: allProducts,
     deleteProduct: deleteProduct,
     modifyProduct: modifyProduct,
+    saveOrder: saveOrder,
+    getAllOrders: getAllOrders,
+    allOrder: allOrder,
   };
   return (
     <FirestoreContext.Provider value={data}>

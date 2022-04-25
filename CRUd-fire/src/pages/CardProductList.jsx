@@ -38,20 +38,27 @@ function CardProductList() {
         {allProductsInCart.map((product) => {
           return (
             <>
-              <Grid key={uuidv4()} item md={2}>
+              <Grid item md={2}>
                 {product.name}
               </Grid>
-              <Grid key={uuidv4()} item md={2}>
+              <Grid item md={2}>
                 {product.amount}
               </Grid>
-              <Grid key={uuidv4()} item md={2}>
+              <Grid item md={2}>
                 {product.price}
               </Grid>
-              <Grid key={uuidv4()} item md={3}>
-                <img src={product.image} alt="imagesda" width={100} />
+              <Grid item md={3}>
+                <img
+                  src={product.image}
+                  alt="imagesda"
+                  width={100}
+                  key={uuidv4()}
+                />
               </Grid>
-              <Grid key={uuidv4()} item md={3}>
-                <Button onClick={() => handleDelete(product.id)}>X</Button>
+              <Grid item md={3}>
+                <Button onClick={() => handleDelete(product.id)} key={uuidv4()}>
+                  X
+                </Button>
               </Grid>
             </>
           );
